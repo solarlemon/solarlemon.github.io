@@ -4,6 +4,51 @@
   
     
     <entry>
+      <title>Python对字符串的操作</title>
+      <link href="/2023/08/09/Python%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
+      <url>/2023/08/09/Python%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python对文件的操作</title>
+      <link href="/2023/08/09/Python%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
+      <url>/2023/08/09/Python%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo使用技巧</title>
+      <link href="/2023/08/09/Hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+      <url>/2023/08/09/Hexo%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1、新建文章"><a href="#1、新建文章" class="headerlink" title="1、新建文章"></a>1、新建文章</h3><pre class="line-numbers language-none"><code class="language-none">hexo new hello-world<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="2、添加必要信息"><a href="#2、添加必要信息" class="headerlink" title="2、添加必要信息"></a>2、添加必要信息</h3><pre class="line-numbers language-none"><code class="language-none">---title: 标题 # 自动创建，如 hello-worlddate: 日期 # 自动创建，如 2019-09-22 01:47:21tags: - 标签1- 标签2- 标签3categories:- 分类1- 分类2---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="3、新建标签页"><a href="#3、新建标签页" class="headerlink" title="3、新建标签页"></a>3、新建标签页</h3><pre class="line-numbers language-none"><code class="language-none">hexo new page tags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>执行这个命令之后会自动帮我们生成一个 source&#x2F;tags&#x2F;index.md 文件,可以进行修改</p><pre class="line-numbers language-none"><code class="language-none">---title: tagsdate: 2023-08-05 19:00:35layout: tags---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo的使用 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>链表</title>
       <link href="/2023/08/09/%E9%93%BE%E8%A1%A8/"/>
       <url>/2023/08/09/%E9%93%BE%E8%A1%A8/</url>
