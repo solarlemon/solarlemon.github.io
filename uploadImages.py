@@ -1,19 +1,21 @@
-import re
-import requests
+import datetime
 import os
+import re
+
+import requests
 from qiniu import Auth, put_file
-from concurrent.futures import ThreadPoolExecutor
 
 
 # 获取md文件中的图片链接,保存为文件，上传至七牛并返回七牛外链地址
-def get_pic_url(filename):
+def get_pic_url(blog_md_file):
     url_map = {}
-    with open(filename, 'r',) as f:
+    with open(blog_md_file, 'r', encoding='utf-8') as f:
         content = f.read()
         img_patten = r'!\[.*?\]\((.*?)\)|<img.*?src=[\'\"](.*?)[\'\"].*?>'
-        matches = list(re.compile(img_patten).findall(content))
-        if len(matches) > 0:
+        matches = list(re.compile(img_patten).findall(content))  # 匹配图片
+        if len(matches) > 0:  # 这里存放的matches是图片
             for url in matches:
+                # url = url[0]
                 url = url[0]
                 # CSDN图片直链有3种样式，真坑:
                 # 这一种文件名太长，直接这样命名上传到七牛云之后，有时外链链接无法加载.
@@ -28,6 +30,7 @@ def get_pic_url(filename):
                                       ' like Gecko) Chrome/55.0.2883.87 Safari/537.36'
                     }
                     if "csdn" in url:
+                        # CSDN保存的图片
                         pic_name = url.split('csdnimg.cn/')[-1]
                         # pic_name = "{}/{}".format(pic_path, url.split('csdnimg.cn/')[-1])
                         pic_name = pic_name.split('csdn.net/')[-1]
@@ -35,34 +38,29 @@ def get_pic_url(filename):
                         # csdn部分直链链接里没有格式，加个图片尾缀
                         if not pic_name.endswith('.jpg') and not pic_name.endswith('.png'):
                             pic_name = pic_name + '.jpg'
+                        response = requests.get(url, headers=headers).content
+                        pic_name_len = len(pic_name)
 
                     elif "github" in url:
-                        # 保存github图片，github直链的链接为文件链接加参数:?raw=true,例如:
+                        # github保存的图片，github直链的链接为文件链接加参数:?raw=true,例如:
                         # https://github.com/yinwenqin/kubeSourceCodeNote/blob/master/scheduler/image/p2/schedule.jpg?raw=true
                         pic_name = url.split('/')[-1]
                         url += "?raw=true"
+                        response = requests.get(url, headers=headers).content
+                        pic_name_len = len(pic_name)
 
-                    else:
-                        # 别的来源的图片链接如有不同，请自行按对应格式修改
-                        pic_name = url.split('/')[-1]
-
-                    response = requests.get(url, headers=headers).content
-
-                    pic_name_len = len(pic_name)
-                    # 名字太长截取一半
-                    if pic_name_len > 40:
-                        pic_name = pic_name[int(pic_name_len/2):]
-                    pic_name = "{}/{}".format(pic_path, pic_name)
-                    print(pic_name)
-                    with open(pic_name, 'wb') as f2:
-                        f2.write(response)
-                    new_pic_url = pic_upload(pic_name)
-                    url_map[url] = new_pic_url
+                    elif "images" in url:
+                        # 来自于本地文件
+                        pic_name = url
+                        new_pic_url = pic_upload(pic_name)
+                        url_map[url] = new_pic_url
+                        print("pic_name：", pic_name)
+                        url_map[url] = new_pic_url
 
                 except Exception as e:
-                    print("文件:", filename, "url处理失败:", url, e)
+                    print("文件:", blog_md_file, "url处理失败:", url, e)
                     return {}
-    print(url_map)
+    print(url_map)  # map：{原地址：上传后的地址}
     return url_map
 
 
@@ -92,9 +90,9 @@ def pic_upload(file):
         q = Auth(access_key, secret_key)
         token = q.upload_token(bucket_name, key, 3600)
         put_file(token, key, file)
-        # 上传后得到的图片外链示例: http://pwh8f9az4.bkt.clouddn.com/AlgSchedule.jpg
+        # 上传后得到的图片外链示例: http://pwh8f9az4.bkt.clouddn.com/images/AlgSchedule.jpg
         new_url = endpoint + '/' + os.path.basename(file)
-        # print('new url', new_url)
+        print('上传成功。new url：', new_url)
         return new_url
 
     except Exception as e:
@@ -103,16 +101,18 @@ def pic_upload(file):
 
 
 # 替换md文件中的旧链接
-def modify_md(filename, url_map):
+def modify_md(blog_md_file, url_map):
     try:
-        with open(filename, "r") as f:
+        with open(blog_md_file, "r", encoding='utf-8') as f:
             content = f.read()
         for url, new_pic_url in url_map.items():
-            with open(filename, "w") as f:
+            # 根据匹配url_map进行修改
+            with open(blog_md_file, "w", encoding='utf-8') as f:
                 content = content.replace(url, new_pic_url)
                 f.write(content)
+                print(blog_md_file, "图片地址修改成功")
     except Exception as e:
-        print(filename, '文件修改失败:', e)
+        print(blog_md_file, '文件修改失败:', e)
 
 
 def run(file):
@@ -124,20 +124,47 @@ def run(file):
 
 def main(path):
     # 获取所有的md文件
-    files = list_file([], path)
+    files = SearchFiles(path, '.md')
     if len(files) > 0:
-        th_pool = ThreadPoolExecutor(20)
         for file in files:
-            th_pool.submit(run, file)
-        th_pool.shutdown(wait=True)
+            run(file)
     else:
         print("no markdown found, exit")
 
 
-if __name__ == "__main__":
-    md_path = "E:/blog/source/_posts"
-    pic_path = "E:/blog/source/images"
-    if not os.path.exists(pic_path):
-        os.makedirs(pic_path)
-    main(md_path)
+def SearchFiles(directory, fileType):
+    fileList = []
+    for root, subDirs, files in os.walk(directory):
+        for fileName in files:
+            if fileName.endswith(fileType):
+                fileList.append(os.path.join(root, fileName))
+    return fileList
 
+
+def copy_to_hexo():
+    TIMEFORMAT = '%Y-%m-%d %H:%M:%S'
+    blog_md_files = SearchFiles(LOCAL_ARTICLE_PATH, '.md')
+    for file in blog_md_files:
+        dirname, fileName = os.path.split(file)
+        with open(file, 'r', encoding='utf-8') as f:
+            # 读文件
+            content = f.read()
+            title = fileName.split('.')[0]
+            content = "---\ntitle: " + title + "\ndate: " + datetime.datetime.now().strftime(
+                TIMEFORMAT) + "\ntags: xxx\ncategories: xxx\n---\n" + content
+            # print(content)
+        with open(md_path + '/' + fileName, "w", encoding="utf-8") as f:
+            # 写文件
+            try:
+                f.write(content)
+            except Exception as e:
+                print(fileName, '失败', e)
+
+
+if __name__ == "__main__":
+    md_path = 'E:/blog/source/_posts/'
+    pic_path = 'E:/blog/source/images/'  # 这里是存放图片的目录
+    LOCAL_ARTICLE_PATH = 'E:/blog/source/test'  # 这里填入已写好的md文档
+    copy_to_hexo()
+    print("成功复制到hexo博客目录下")
+    main(md_path)
