@@ -13,14 +13,16 @@
       
       <categories>
           
-          <category> xxx </category>
+          <category> 队列 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> xxx </tag>
+            <tag> 队列 </tag>
+            
+            <tag> 优先队列 </tag>
             
         </tags>
       
@@ -113,14 +115,16 @@
       
       <categories>
           
-          <category> xxx </category>
+          <category> 栈 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> xxx </tag>
+            <tag> 单调栈 </tag>
+            
+            <tag> 栈 </tag>
             
         </tags>
       
