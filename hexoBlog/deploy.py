@@ -1,9 +1,9 @@
 import datetime
 import os
 import re
-
 import requests
 from qiniu import Auth, put_file
+import time
 
 
 # 获取md文件中的图片链接,保存为文件，上传至七牛并返回七牛外链地址
@@ -116,7 +116,6 @@ def modify_md(blog_md_file, url_map):
 
 
 def run(file):
-    # {old_url: new_url}
     url_map = get_pic_url(file)
     if len(url_map.keys()) > 0:
         modify_md(file, url_map)
@@ -126,7 +125,10 @@ def main(path):
     # 获取所有的md文件
     files = SearchFiles(path, '.md')
     if len(files) > 0:
+
         for file in files:
+            if compareFileTime(file) is False:  # 当前时间和修改时间不相同则不执行
+                continue
             run(file)
     else:
         print("no markdown found, exit")
@@ -142,16 +144,18 @@ def SearchFiles(directory, fileType):
 
 
 def copy_to_hexo():
-    TIMEFORMAT = '%Y-%m-%d %H:%M:%S'
+    TimeFormat = '%Y-%m-%d %H:%M:%S'
     blog_md_files = SearchFiles(LOCAL_ARTICLE_PATH, '.md')
     for file in blog_md_files:
+        if compareFileTime(file) is False:  # 当前时间和修改时间不相同则不复制
+            continue
         dirname, fileName = os.path.split(file)
         with open(file, 'r', encoding='utf-8') as f:
             # 读文件
             content = f.read()
             title = fileName.split('.')[0]
             content = "---\ntitle: " + title + "\ndate: " + datetime.datetime.now().strftime(
-                TIMEFORMAT) + "\ntags: xxx\ncategories: xxx\n---\n" + content
+                TimeFormat) + "\ntags: xxx\ncategories: xxx\n---\n" + content
             # print(content)
         with open(md_path + '/' + fileName, "w", encoding="utf-8") as f:
             # 写文件
@@ -159,12 +163,24 @@ def copy_to_hexo():
                 f.write(content)
             except Exception as e:
                 print(fileName, '失败', e)
+        return title
+
+
+# 文件修改时间与当前时间的比较,参数为文件名（路径）
+def compareFileTime(filename):
+    TimeFormat = '%Y-%m-%d %H'
+    struct_time = time.strptime(time.ctime(os.path.getmtime(filename)), '%a %b %d %H:%M:%S %Y')
+    fileTime = time.strftime(TimeFormat, struct_time)
+    now = datetime.datetime.now().strftime(TimeFormat)
+    # 同一分钟返回true
+    return now == fileTime
 
 
 if __name__ == "__main__":
-    md_path = 'E:/blog/source/_posts/'
+    md_path = 'E:/blog/source/_posts/'  # 博客存放位置
     pic_path = 'E:/blog/source/images/'  # 这里是存放图片的目录
-    LOCAL_ARTICLE_PATH = 'E:/blog/source/test'  # 这里填入已写好的md文档
-    copy_to_hexo()
-    print("成功复制到hexo博客目录下")
-    main(md_path)
+    LOCAL_ARTICLE_PATH = 'E:/VS Code刷leetcode/LeetCode-Train'  # 这里填入已写好的md文档
+    fileName = copy_to_hexo()
+    print(fileName, "成功复制到hexo博客目录下")
+    if fileName is not None:
+        main(md_path)
