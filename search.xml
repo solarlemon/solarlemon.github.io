@@ -13,39 +13,16 @@
       
       <categories>
           
-          <category> xxx </category>
+          <category> 哈希表 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> xxx </tag>
+            <tag> 双指针 </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
-      <link href="/2023/08/21/test/"/>
-      <url>/2023/08/21/test/</url>
-      
-        <content type="html"><![CDATA[<p><img src="/"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> xxx </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> xxx </tag>
+            <tag> 排序 </tag>
             
         </tags>
       
