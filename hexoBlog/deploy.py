@@ -16,7 +16,7 @@ def get_pic_url(blog_md_file):
         if len(matches) > 0:  # 这里存放的matches是图片
             for url in matches:
                 # url = url[0]
-                url = url[0]
+                url = url[1]
                 # CSDN图片直链有3种样式，真坑:
                 # 这一种文件名太长，直接这样命名上传到七牛云之后，有时外链链接无法加载.
                 # https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMTE2MTQ1MjIxNTky,
@@ -182,5 +182,5 @@ if __name__ == "__main__":
     LOCAL_ARTICLE_PATH = 'E:/VS Code刷leetcode/LeetCode-Train'  # 这里填入已写好的md文档
     fileName = copy_to_hexo()
     print(fileName, "成功复制到hexo博客目录下")
-    if fileName is not None:
-        main(md_path)
+    # if fileName is not None:
+    main(md_path)

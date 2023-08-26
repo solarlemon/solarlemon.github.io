@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>数据结构复习之排序</title>
+      <link href="/2023/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F/"/>
+      <url>/2023/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1、直接插入排序"><a href="#1、直接插入排序" class="headerlink" title="1、直接插入排序"></a>1、直接插入排序</h3><blockquote><p>和前面已排好序的相比，找到对应位置直接插入。</p><p>​比较次数与初始状态无关。</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/1.插入排序.png" style="zoom:67%;" /><h3 id="2、希尔排序"><a href="#2、希尔排序" class="headerlink" title="2、希尔排序"></a>2、希尔排序</h3><blockquote><p>对每一个子表进行直接插入排序</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/2.希尔排序.png" style="zoom:60%;" /><h3 id="3、冒泡排序"><a href="#3、冒泡排序" class="headerlink" title="3、冒泡排序"></a>3、冒泡排序</h3><blockquote><p>从后往前两两对比，更小的往前放，每一趟确定一个最小元素。</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/3.冒泡排序.png" style="zoom:60%;" /><h3 id="4、快速排序"><a href="#4、快速排序" class="headerlink" title="4、快速排序"></a>4、快速排序</h3><blockquote><p>交换之后换一边移动</p><p>​基本有序速度最慢，枢轴为中间大小最快。</p><p>​一趟之后确定枢轴的最终位置。</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/4.快速排序.png" style="zoom:60%;" /><h3 id="5、简单选择排序"><a href="#5、简单选择排序" class="headerlink" title="5、简单选择排序"></a>5、简单选择排序</h3><blockquote><p>选取最小元素加入已排好序的末尾。</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/5.简单选择排序.png" style="zoom:60%;" /><h3 id="6、堆排序"><a href="#6、堆排序" class="headerlink" title="6、堆排序"></a>6、堆排序</h3><blockquote><p>先建堆（大根堆）、再找数（最大的数）</p><p>​注意这里一直是在数组上执行。</p></blockquote><p>建立好大根堆之后和最后一个元素交换位置，输出并删除这个最大元素，然后继续建成大根堆。</p><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/6.堆排序.png" style="zoom:60%;" /><h3 id="7、归并排序"><a href="#7、归并排序" class="headerlink" title="7、归并排序"></a>7、归并排序</h3><blockquote><p>两有序并为一有序    另建表，分别从两表依次对比</p></blockquote><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/7.归并排序.png" style="zoom:60%;" /><h3 id="8、基数排序"><a href="#8、基数排序" class="headerlink" title="8、基数排序"></a>8、基数排序</h3><img src="http://ryyg0t1v1.hn-bkt.clouddn.com/8.基数排序.png" style="zoom:60%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> 排序 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>哈希表</title>
       <link href="/2023/08/21/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
       <url>/2023/08/21/%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> 双指针 </tag>
-            
             <tag> 排序 </tag>
+            
+            <tag> 双指针 </tag>
             
         </tags>
       
