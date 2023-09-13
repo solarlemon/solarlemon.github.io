@@ -179,7 +179,7 @@ def compareFileTime(filename):
 if __name__ == "__main__":
     md_path = 'E:/blog/source/_posts/'  # 博客存放位置
     pic_path = 'E:/blog/source/images/'  # 这里是存放图片的目录
-    LOCAL_ARTICLE_PATH = 'E:/VS Code刷leetcode/LeetCode-Train'  # 这里填入已写好的md文档
+    LOCAL_ARTICLE_PATH = 'E:\VSCode_leetcode\LeetCode-Train'  # 这里填入已写好的md文档
     fileName = copy_to_hexo()
     print(fileName, "成功复制到hexo博客目录下")
     # if fileName is not None:
