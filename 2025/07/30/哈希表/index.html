@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#547b59">
+  <meta name="author" content="Solar">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 Contents   标题 标签    设计哈希集合 设计、数组、哈希表、链表、哈希函数   设计哈希映射 设计、数组、哈希表、链表、哈希函数   存在重复元素 数组、哈希表、排序   存在重复元素ii 数组、哈希表、滑动窗口   存在重复元素iii 数组、桶排序、有序集合、排序、滑动窗口   检查是否所有字符出现次数相同 哈希表、字符串、计数   只出现一次的数字 位运算、数组   赎金信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希表">
+<meta property="og:url" content="http://example.com/2025/07/30/%E5%93%88%E5%B8%8C%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 Contents   标题 标签    设计哈希集合 设计、数组、哈希表、链表、哈希函数   设计哈希映射 设计、数组、哈希表、链表、哈希函数   存在重复元素 数组、哈希表、排序   存在重复元素ii 数组、哈希表、滑动窗口   存在重复元素iii 数组、桶排序、有序集合、排序、滑动窗口   检查是否所有字符出现次数相同 哈希表、字符串、计数   只出现一次的数字 位运算、数组   赎金信">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-30T12:14:20.000Z">
+<meta property="article:modified_time" content="2025-07-30T12:14:20.931Z">
+<meta property="article:author" content="Solar">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="哈希表">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>哈希表 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Solar</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default_top_img.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">哈希表</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-30 20:14" pubdate>
+          July 30, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">哈希表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-Contents"><a href="#1-Contents" class="headerlink" title="1 Contents"></a>1 Contents</h2><table>
+<thead>
+<tr>
+<th align="center">标题</th>
+<th align="center">标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">设计哈希集合</td>
+<td align="center">设计、数组、哈希表、链表、哈希函数</td>
+</tr>
+<tr>
+<td align="center">设计哈希映射</td>
+<td align="center">设计、数组、哈希表、链表、哈希函数</td>
+</tr>
+<tr>
+<td align="center">存在重复元素</td>
+<td align="center">数组、哈希表、排序</td>
+</tr>
+<tr>
+<td align="center">存在重复元素ii</td>
+<td align="center">数组、哈希表、滑动窗口</td>
+</tr>
+<tr>
+<td align="center">存在重复元素iii</td>
+<td align="center">数组、桶排序、有序集合、排序、滑动窗口</td>
+</tr>
+<tr>
+<td align="center">检查是否所有字符出现次数相同</td>
+<td align="center">哈希表、字符串、计数</td>
+</tr>
+<tr>
+<td align="center">只出现一次的数字</td>
+<td align="center">位运算、数组</td>
+</tr>
+<tr>
+<td align="center">赎金信</td>
+<td align="center">哈希表、字符串、计数</td>
+</tr>
+<tr>
+<td align="center">两个数组的交集</td>
+<td align="center">数组、哈希表、双指针、二分查找、排序</td>
+</tr>
+<tr>
+<td align="center">两个数组的交集ii</td>
+<td align="center">数组、哈希表、双指针、二分查找、排序</td>
+</tr>
+<tr>
+<td align="center">有效的数独</td>
+<td align="center">数组、哈希表、矩阵</td>
+</tr>
+<tr>
+<td align="center">两数之和</td>
+<td align="center">数组、哈希表</td>
+</tr>
+<tr>
+<td align="center">三数之和</td>
+<td align="center">数组、双指针、排序</td>
+</tr>
+<tr>
+<td align="center">四数之和</td>
+<td align="center">数组、双指针、排序</td>
+</tr>
+<tr>
+<td align="center">四数相加ii</td>
+<td align="center">数组、哈希表</td>
+</tr>
+<tr>
+<td align="center">最长连续序列</td>
+<td align="center">并查集、数组、哈希表、排序</td>
+</tr>
+<tr>
+<td align="center">快乐数</td>
+<td align="center">哈希表、数学、双指针</td>
+</tr>
+<tr>
+<td align="center">有效的字母异位词</td>
+<td align="center">哈希表、字符串、排序</td>
+</tr>
+<tr>
+<td align="center">同构字符串</td>
+<td align="center">哈希表、字符串</td>
+</tr>
+<tr>
+<td align="center">数组中重复的数据</td>
+<td align="center">数组、哈希表</td>
+</tr>
+<tr>
+<td align="center">扑克牌中的顺子</td>
+<td align="center">数组、排序</td>
+</tr>
+<tr>
+<td align="center">丢失的数字</td>
+<td align="center">位运算、数组、哈希表、数学、二分查找、排序</td>
+</tr>
+<tr>
+<td align="center">字符串中的第一个唯一字符</td>
+<td align="center">队列、哈希表、字符串、计数</td>
+</tr>
+<tr>
+<td align="center">字母异位词分组</td>
+<td align="center">数组、哈希表、字符串、排序</td>
+</tr>
+<tr>
+<td align="center">两个列表的最小索引总和</td>
+<td align="center">数组、哈希表、字符串</td>
+</tr>
+<tr>
+<td align="center">回旋镖的数量</td>
+<td align="center">数组、哈希表、数学</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-1Q-705-设计哈希集合"><a href="#1-1-1Q-705-设计哈希集合" class="headerlink" title="1.1 1	Q.705 设计哈希集合"></a>1.1 1	Q.705 设计哈希集合</h3><p>不使用任何内建的哈希表库设计一个哈希集合（HashSet）。</p>
+<p>实现 <code>MyHashSet</code> 类：</p>
+<ul>
+<li><code>void add(key)</code> 向哈希集合中插入值 <code>key</code> 。</li>
+<li><code>bool contains(key)</code> 返回哈希集合中是否存在这个值 <code>key</code> 。</li>
+<li><code>void remove(key)</code> 将给定值 <code>key</code> 从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHashSet</span> &#123;<br>    <span class="hljs-comment">// 采用拉链法,数组的每个元素是链表</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">base</span> <span class="hljs-operator">=</span> <span class="hljs-number">769</span>;<br>    <span class="hljs-keyword">private</span> LinkedList[] data;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyHashSet</span><span class="hljs-params">()</span> &#123;<br>        data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>[base];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; data.length; i++) &#123;<br>            data[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> hash(key);<br>        <span class="hljs-comment">// 构造迭代器</span><br>        Iterator&lt;Integer&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">element</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (element == key) &#123;<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>        &#125;<br>        data[h].offerLast(key);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> hash(key);<br>        <span class="hljs-comment">// 构造迭代器</span><br>        Iterator&lt;Integer&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">element</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (element == key) &#123;<br>                data[h].remove(element);<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">contains</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> hash(key);<br>        <span class="hljs-comment">// 构造迭代器</span><br>        Iterator&lt;Integer&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">element</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (element == key) &#123;<br><br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-keyword">return</span> key % base;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2-2Q756-设计哈希映射"><a href="#1-2-2Q756-设计哈希映射" class="headerlink" title="1.2 2	Q756.设计哈希映射"></a>1.2 2	Q756.设计哈希映射</h3><p>不使用任何内建的哈希表库设计一个哈希映射（HashMap）。</p>
+<p>实现 <code>MyHashMap</code> 类：</p>
+<ul>
+<li><code>MyHashMap()</code> 用空映射初始化对象</li>
+<li><code>void put(int key, int value)</code> 向 HashMap 插入一个键值对 <code>(key, value)</code> 。如果 <code>key</code> 已经存在于映射中，则更新其对应的值 <code>value</code> 。</li>
+<li><code>int get(int key)</code> 返回特定的 <code>key</code> 所映射的 <code>value</code> ；如果映射中不包含 <code>key</code> 的映射，返回 <code>-1</code> 。</li>
+<li><code>void remove(key)</code> 如果映射中存在 <code>key</code> 的映射，则移除 <code>key</code> 和它所对应的 <code>value</code> 。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHashMap</span> &#123;<br>    <span class="hljs-comment">// 这里相当于把前一题的Integer类型换成键值对</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Pair</span> &#123;<br>        <span class="hljs-comment">// 这里定义一个映射</span><br>        <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> key;<br>        <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> value;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-title function_">Pair</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getKey</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> key;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> key;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setValue</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> &#123;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">base</span> <span class="hljs-operator">=</span> <span class="hljs-number">769</span>;<br>    <span class="hljs-keyword">private</span> LinkedList[] data;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyHashMap</span><span class="hljs-params">()</span> &#123;<br>        data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>[base];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; base; i++) &#123;<br>            data[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Pair&gt;();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> key % base;<br>        Iterator&lt;Pair&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Pair</span> <span class="hljs-variable">pair</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (pair.getKey() == key) &#123;<br>                pair.setValue(value);<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>        &#125;<br>        data[h].offerLast(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Pair</span>(key, value));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> key % base;<br>        Iterator&lt;Pair&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Pair</span> <span class="hljs-variable">pair</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (pair.getKey() == key) &#123;<br>                <span class="hljs-keyword">return</span> pair.value;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> key % base;<br>        Iterator&lt;Pair&gt; iterator = data[h].iterator();<br>        <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>            <span class="hljs-type">Pair</span> <span class="hljs-variable">pair</span> <span class="hljs-operator">=</span> iterator.next();<br>            <span class="hljs-keyword">if</span> (pair.getKey() == key) &#123;<br>                data[h].remove(pair);<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-keyword">return</span> key % base;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-3Q217-存在重复元素"><a href="#1-3-3Q217-存在重复元素" class="headerlink" title="1.3 3	Q217.存在重复元素"></a>1.3 3	Q217.存在重复元素</h3><p>给你一个整数数组 <code>nums</code> 。如果任一值在数组中出现 <strong>至少两次</strong> ，返回 <code>true</code> ；如果数组中每个元素互不相同，返回 <code>false</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-type">Set</span> <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>();<br>    <span class="hljs-keyword">for</span> (Integer num : nums) &#123;<br>        <span class="hljs-keyword">if</span> (!set.add(num)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">// 没有添加成功说明有重复元素</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-4-4Q219-存在重复元素"><a href="#1-4-4Q219-存在重复元素" class="headerlink" title="1.4 4	Q219.存在重复元素"></a>1.4 4	Q219.存在重复元素</h3><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，判断数组中是否存在两个 <strong>不同的索引</strong> <code>i</code> 和 <code>j</code> ，满足 <code>nums[i] == nums[j]</code> 且 <code>abs(i - j) &lt;= k</code> 。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsNearbyDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> k)</span> &#123;<br>    HashMap&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (map.containsKey(nums[i]) &amp;&amp; i - map.get(nums[i]) &lt;= k) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        map.put(nums[i], i);<span class="hljs-comment">// &#123;nums[i],i&#125;</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-5-5Q220-存在重复元素iii（困难题，不会写）"><a href="#1-5-5Q220-存在重复元素iii（困难题，不会写）" class="headerlink" title="1.5 5	Q220.存在重复元素iii（困难题，不会写）"></a>1.5 5	Q220.存在重复元素iii（困难题，不会写）</h3><p>给你一个整数数组 <code>nums</code> 和两个整数 <code>indexDiff</code> 和 <code>valueDiff</code> 。</p>
+<p>找出满足下述条件的下标对 <code>(i, j)</code>：</p>
+<ul>
+<li><code>i != j</code>,</li>
+<li><code>abs(i - j) &lt;= indexDiff</code></li>
+<li><code>abs(nums[i] - nums[j]) &lt;= valueDiff</code></li>
+</ul>
+<p>如果存在，返回 <code>true</code> *；*否则，返回 <code>false</code> 。</p>
+<blockquote>
+<p>输入：nums &#x3D; [1,2,3,1], indexDiff &#x3D; 3, valueDiff &#x3D; 0<br>输出：true<br>解释：可以找出 (i, j) &#x3D; (0, 3) 。<br>满足下述 3 个条件：<br>i !&#x3D; j –&gt; 0 !&#x3D; 3<br>abs(i - j) &lt;&#x3D; indexDiff –&gt; abs(0 - 3) &lt;&#x3D; 3<br>abs(nums[i] - nums[j]) &lt;&#x3D; valueDiff –&gt; abs(1 - 1) &lt;&#x3D; 0</p>
+</blockquote>
+<h3 id="1-6-6Q1941-检查是否所有字符出现次数相同"><a href="#1-6-6Q1941-检查是否所有字符出现次数相同" class="headerlink" title="1.6 6	Q1941.检查是否所有字符出现次数相同"></a>1.6 6	Q1941.检查是否所有字符出现次数相同</h3><p>给你一个字符串 <code>s</code> ，如果 <code>s</code> 是一个 <strong>好</strong> 字符串，请你返回 <code>true</code> ，否则请返回 <code>false</code> 。</p>
+<p>如果 <code>s</code> 中出现过的 <strong>所有</strong> 字符的出现次数 <strong>相同</strong> ，那么我们称字符串 <code>s</code> 是 <strong>好</strong> 字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">areOccurrencesEqual</span><span class="hljs-params">(String s)</span> &#123;<br>    <span class="hljs-type">char</span>[] ch = s.toCharArray();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span>[] num = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : ch) &#123;<br>        <span class="hljs-comment">// 记录出现次数</span><br>        num[c - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; num.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (num[i] != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (cnt == <span class="hljs-number">0</span>) &#123;<br>                cnt = num[i];<span class="hljs-comment">// 记录下次数非0时的次数</span><br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cnt != num[i]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-7-7Q136-只出现一次的数字"><a href="#1-7-7Q136-只出现一次的数字" class="headerlink" title="1.7 7	Q136.只出现一次的数字"></a>1.7 7	Q136.只出现一次的数字</h3><p>给你一个 <strong>非空</strong> 整数数组 <code>nums</code> ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<p>你必须设计并实现线性时间复杂度的算法来解决此问题，且该算法只使用常量额外空间。</p>
+<blockquote>
+<p>这里只允许使用常量空间</p>
+<p>异或解法：异或运算满足交换律，a^ b^ a&#x3D;a^ a^ b&#x3D;b,因此ans相当于nums[0]^ nums[1]^ nums[2]^ nums[3]^nums[4]….. 然后再根据交换律把相等的合并到一块儿进行异或（结果为0），然后再与只出现过一次的元素进行异或，这样最后的结果就是，只出现过一次的元素（0^任意值&#x3D;任意值）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">singleNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> nums[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">if</span> (nums.length &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;<br>            ans = ans ^ nums[i];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-8-8Q-383赎金信"><a href="#1-8-8Q-383赎金信" class="headerlink" title="1.8 8	Q.383赎金信"></a>1.8 8	Q.383赎金信</h3><p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
+<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
+<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">canConstruct</span><span class="hljs-params">(String ransomNote, String magazine)</span> &#123;<br>    <span class="hljs-keyword">if</span> (ransomNote.length() &gt; magazine.length()) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-type">int</span>[] cnt = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<span class="hljs-comment">// 记录相应字符出现次数</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> ch : magazine.toCharArray()) &#123;  <br>        cnt[ch - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : ransomNote.toCharArray()) &#123;<br>        cnt[c - <span class="hljs-string">&#x27;a&#x27;</span>]--;<br>        <span class="hljs-keyword">if</span> (cnt[c - <span class="hljs-string">&#x27;a&#x27;</span>] &lt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-9-9Q349-两个数组的交集"><a href="#1-9-9Q349-两个数组的交集" class="headerlink" title="1.9 9	Q349.两个数组的交集"></a>1.9 9	Q349.两个数组的交集</h3><p>给定两个数组 <code>nums1</code> 和 <code>nums2</code> ，返回 <em>它们的交集</em> 。输出结果中的每个元素一定是 <strong>唯一</strong> 的。我们可以 <strong>不考虑输出结果的顺序</strong> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] intersection(<span class="hljs-type">int</span>[] nums1, <span class="hljs-type">int</span>[] nums2) &#123;<br>    Set&lt;Integer&gt; set1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    Set&lt;Integer&gt; set2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    ArrayList&lt;Integer&gt; arrayList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (Integer integer : nums1) &#123;<br>        set1.add(integer);<span class="hljs-comment">// nums1去重</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (Integer integer : nums2) &#123;<br>        set2.add(integer);<span class="hljs-comment">// nums2去重</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (Integer integer : set2) &#123;<br>        <span class="hljs-keyword">if</span> (!set1.add(integer)) &#123;<br>            arrayList.add(integer);<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[arrayList.size()];<br>    <span class="hljs-keyword">for</span> (Integer integer : arrayList) &#123;<br>        ans[index++] = integer;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-10-10Q350-两个数组的交集ii"><a href="#1-10-10Q350-两个数组的交集ii" class="headerlink" title="1.10 10	Q350.两个数组的交集ii"></a>1.10 10	Q350.两个数组的交集ii</h3><p>给你两个整数数组 <code>nums1</code> 和 <code>nums2</code> ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。</p>
+<blockquote>
+<p>输入：nums1 &#x3D; [1,2,2,1], nums2 &#x3D; [2,2]<br>输出：[2,2]</p>
+<p>输入：nums1 &#x3D; [4,9,5], nums2 &#x3D; [9,4,9,8,4]<br>输出：[4,9]</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] intersect(<span class="hljs-type">int</span>[] nums1, <span class="hljs-type">int</span>[] nums2) &#123;<br>    <span class="hljs-keyword">if</span> (nums1.length &lt; nums2.length) &#123;<br>        <span class="hljs-keyword">return</span> intersect(nums2, nums1);<span class="hljs-comment">// nums作为长度较大数组</span><br>    &#125;<br>    Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums1) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> map.getOrDefault(num, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;<br>        map.put(num, cnt);<span class="hljs-comment">// map存放&#123;num，出现次数&#125;</span><br>    &#125;<br>    <span class="hljs-type">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nums1.length];<br>    <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums2) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> map.getOrDefault(num, <span class="hljs-number">0</span>);<span class="hljs-comment">// 获取出现次数</span><br>        <span class="hljs-keyword">if</span> (cnt &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">// 说明在nums出现过</span><br>            ans[idx++] = num;<br>            cnt--;<span class="hljs-comment">// 出现次数减一</span><br>            <span class="hljs-keyword">if</span> (cnt &gt; <span class="hljs-number">0</span>) &#123;<br>                map.put(num, cnt);<span class="hljs-comment">// 次数还大于0则更新次数</span><br>            &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">// 小于0则移除</span><br>                map.remove(num);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> Arrays.copyOfRange(ans, <span class="hljs-number">0</span>, idx);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-11-11Q36-有效数独"><a href="#1-11-11Q36-有效数独" class="headerlink" title="1.11 11	Q36.有效数独"></a>1.11 11	Q36.有效数独</h3><p>请你判断一个 <code>9 x 9</code> 的数独是否有效。只需要 <strong>根据以下规则</strong> ，验证已经填入的数字是否有效即可。</p>
+<ol>
+<li>数字 <code>1-9</code> 在每一行只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一列只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一个以粗实线分隔的 <code>3x3</code> 宫内只能出现一次。（请参考示例图）</li>
+</ol>
+<blockquote>
+<p>输入：board &#x3D;<br>[[“5”,”3”,”.”,”.”,”7”,”.”,”.”,”.”,”.”]<br>,[“6”,”.”,”.”,”1”,”9”,”5”,”.”,”.”,”.”]<br>,[“.”,”9”,”8”,”.”,”.”,”.”,”.”,”6”,”.”]<br>,[“8”,”.”,”.”,”.”,”6”,”.”,”.”,”.”,”3”]<br>,[“4”,”.”,”.”,”8”,”.”,”3”,”.”,”.”,”1”]<br>,[“7”,”.”,”.”,”.”,”2”,”.”,”.”,”.”,”6”]<br>,[“.”,”6”,”.”,”.”,”.”,”.”,”2”,”8”,”.”]<br>,[“.”,”.”,”.”,”4”,”1”,”9”,”.”,”.”,”5”]<br>,[“.”,”.”,”.”,”.”,”8”,”.”,”.”,”7”,”9”]]<br>输出：true</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isValidSudoku</span><span class="hljs-params">(<span class="hljs-type">char</span>[][] board)</span> &#123;<br>    <span class="hljs-comment">// 以下数组最后以维代表这个数字</span><br>    <span class="hljs-type">int</span>[][] row = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">9</span>][<span class="hljs-number">9</span>];<span class="hljs-comment">// 行内数字出现次数</span><br>    <span class="hljs-type">int</span>[][] column = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">9</span>][<span class="hljs-number">9</span>];<span class="hljs-comment">// 列内数字出现次数</span><br>    <span class="hljs-type">int</span>[][][] subbox = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">3</span>][<span class="hljs-number">3</span>][<span class="hljs-number">9</span>];<span class="hljs-comment">// 九宫格内数字出现次数</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; j++) &#123;<br>            <span class="hljs-comment">// 遍历数组</span><br>            <span class="hljs-type">char</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> board[i][j];<br>            <span class="hljs-keyword">if</span> (ch != <span class="hljs-string">&#x27;.&#x27;</span>) &#123;<br>                <span class="hljs-comment">// 存在数字</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> ch - <span class="hljs-string">&#x27;1&#x27;</span>;<br>                row[i][idx]++;<span class="hljs-comment">// 行内数字次数+1</span><br>                column[j][idx]++;<span class="hljs-comment">// 列内数字次数+1</span><br>                subbox[i / <span class="hljs-number">3</span>][j / <span class="hljs-number">3</span>][idx]++;<span class="hljs-comment">// 九宫格内数字次数+1</span><br>                <span class="hljs-keyword">if</span> (row[i][idx] &gt; <span class="hljs-number">1</span> || column[j][idx] &gt; <span class="hljs-number">1</span> || subbox[i / <span class="hljs-number">3</span>][j / <span class="hljs-number">3</span>][idx] &gt; <span class="hljs-number">1</span>) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-12-12Q1-两数相加"><a href="#1-12-12Q1-两数相加" class="headerlink" title="1.12 12	Q1.两数相加"></a>1.12 12	Q1.两数相加</h3><p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] twoSum(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> target) &#123;<br>  *<span class="hljs-comment">// 使用Map，记录下已经遍历的值和下标--常用的方式*</span><br>  Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;Integer, Integer&gt;();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>     <span class="hljs-keyword">if</span> (map.containsKey(target - nums[i])) &#123;*<span class="hljs-comment">// 如果集合中包含有符合的数*</span><br>       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123; map.get(target - nums[i]), i &#125;;*<span class="hljs-comment">// 返回符合的数的下标和该数的下标,不必担心下标顺序的问题*</span><br>     &#125;<br>     map.put(nums[i], i);*<span class="hljs-comment">// 如果没找到对应的数，则将该数及下标存起来。*</span><br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">0</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-13-13Q15-三数之和"><a href="#1-13-13Q15-三数之和" class="headerlink" title="1.13 13	Q15.三数之和"></a>1.13 13	Q15.三数之和</h3><p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请</p>
+<p>你返回所有和为 <code>0</code> 且不重复的三元组。</p>
+<p>**注意：**答案中不可以包含重复的三元组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">threeSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-comment">// 双指针算法，排序之和分别指向两端</span><br>    List&lt;List&lt;Integer&gt;&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">if</span> (nums == <span class="hljs-literal">null</span> || nums.length &lt; <span class="hljs-number">3</span>) &#123;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    Arrays.sort(nums);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (nums[i] &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">break</span>;<span class="hljs-comment">// 从小往大遍历，小的数大于0，这说明没有答案了</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>])<br>            <span class="hljs-keyword">continue</span>;<span class="hljs-comment">// 去重，相同的数不需要比较</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>, r = nums.length - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (l &lt; r) &#123;<br>            <span class="hljs-comment">// l&lt;r则继续遍历</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> nums[i] + nums[l] + nums[r];<br>            <span class="hljs-keyword">if</span> (sum == <span class="hljs-number">0</span>) &#123;<br>                ans.add(Arrays.asList(nums[i], nums[l], nums[r]));<span class="hljs-comment">// 符合条件加入到结果链表</span><br>                <span class="hljs-comment">// 在将左指针和右指针移动的时候，先对左右指针的值，进行判断</span><br>                <span class="hljs-comment">// 这里还需要去重</span><br>                <span class="hljs-keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l + <span class="hljs-number">1</span>]) &#123;<br>                    l++;<br>                &#125;<br>                <span class="hljs-keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r - <span class="hljs-number">1</span>]) &#123;<br>                    r--;<br>                &#125;<br>                <span class="hljs-comment">// 移动指针</span><br>                l++;<br>                r--;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; <span class="hljs-number">0</span>) &#123;<br>                l++;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &gt; <span class="hljs-number">0</span>) &#123;<br>                r--;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-14-14Q18-四数之和"><a href="#1-14-14Q18-四数之和" class="headerlink" title="1.14 14	Q18.四数之和"></a>1.14 14	Q18.四数之和</h3><h3 id="1-15-15Q454-四数之和ii"><a href="#1-15-15Q454-四数之和ii" class="headerlink" title="1.15 15	Q454.四数之和ii"></a>1.15 15	Q454.四数之和ii</h3><h3 id="1-16-16Q128-最长连续序列"><a href="#1-16-16Q128-最长连续序列" class="headerlink" title="1.16 16	Q128.最长连续序列"></a>1.16 16	Q128.最长连续序列</h3><p>给定一个未排序的整数数组 <code>nums</code> ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。</p>
+<p>请你设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
+<p><strong>使用集合和排序的方法解决</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//使用集合的方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">longestConsecutive</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-keyword">if</span> (nums == <span class="hljs-literal">null</span> || nums.length == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (Integer integer : nums) &#123;<br>        set.add(integer);<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">maxLen</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (Integer num : set) &#123;<br>        <span class="hljs-keyword">if</span> (!set.contains(num - <span class="hljs-number">1</span>)) &#123;<br>            <span class="hljs-comment">// 不包含更小的连续的数,不是的话需要继续遍历</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">curNum</span> <span class="hljs-operator">=</span> num;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">curLen</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (set.contains(curNum + <span class="hljs-number">1</span>)) &#123;<br>                <span class="hljs-comment">// 包含连续的数</span><br>                curNum++;<br>                curLen++;<br>            &#125;<br>            maxLen = Math.max(maxLen, curLen);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxLen;<br>&#125;<br><span class="hljs-comment">//这里使用直接排序的方法解决</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">longestConsecutive</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-keyword">if</span> (nums == <span class="hljs-literal">null</span> || nums.length == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        Arrays.sort(nums);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">curLen</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>, maxLen = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[i] - nums[i - <span class="hljs-number">1</span>] == <span class="hljs-number">1</span>) &#123;<br>                curLen++;<br>                maxLen = Math.max(maxLen, curLen);<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[i] == nums[i - <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-comment">// 当时数字相等时显然是可以跳过的</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 不连续</span><br>                curLen = <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> maxLen;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-17-17Q202-快乐数"><a href="#1-17-17Q202-快乐数" class="headerlink" title="1.17 17	Q202.快乐数"></a>1.17 17	Q202.快乐数</h3><p>编写一个算法来判断一个数 <code>n</code> 是不是快乐数。</p>
+<p><strong>「快乐数」</strong> 定义为：</p>
+<ul>
+<li>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。</li>
+<li>然后重复这个过程直到这个数变为 1，也可能是 <strong>无限循环</strong> 但始终变不到 1。</li>
+<li>如果这个过程 <strong>结果为</strong> 1，那么这个数就是快乐数。</li>
+</ul>
+<p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
+<p>[题解点这里](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/happy-number/solutions/224894/kuai-le-shu-by-leetcode-solution/">202. 快乐数 - 力扣（LeetCode）</a>)</p>
+<p>题解使用三种方法：<strong>用哈希集合检测循环（本次使用）</strong>、<strong>快慢指针法</strong>、<strong>数学</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getNextNum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-comment">// 返回这个数的每个位置上的数字的平方和</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> n % <span class="hljs-number">10</span>;<span class="hljs-comment">// 取数</span><br>        n = n / <span class="hljs-number">10</span>;<br>        sum += num * num;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isHappy</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>    Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    <span class="hljs-keyword">while</span> (n != <span class="hljs-number">1</span> &amp;&amp; !set.contains(n)) &#123;<br>        <span class="hljs-comment">// 如果进入循环则说明不是快乐数</span><br>        set.add(n);<br>        n = getNextNum(n);<br>    &#125;<br>    <span class="hljs-keyword">return</span> n == <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-18-18Q242-有效的字母异位词"><a href="#1-18-18Q242-有效的字母异位词" class="headerlink" title="1.18 18	Q242.有效的字母异位词"></a>1.18 18	Q242.有效的字母异位词</h3><p>给定两个字符串 <code>*s*</code> 和 <code>*t*</code> ，编写一个函数来判断 <code>*t*</code> 是否是 <code>*s*</code> 的字母异位词。</p>
+<p>**注意：**若 <code>*s*</code> 和 <code>*t*</code> 中每个字符出现的次数都相同，则称 <code>*s*</code> 和 <code>*t*</code> 互为字母异位词。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//官方解 runtime beats 42.38 %，memory usage beats 89.09 %</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isAnagram</span><span class="hljs-params">(String s, String t)</span> &#123;<br>    <span class="hljs-keyword">if</span> (s.length() != t.length()) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-type">int</span>[] cnt = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        cnt[s.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>        cnt[t.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>]--;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : cnt) &#123;<br>        <span class="hljs-keyword">if</span> (i != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//我的解 runtime beats 100 %，memory usage beats 28.96 %</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isAnagram</span><span class="hljs-params">(String s, String t)</span> &#123;<br>    <span class="hljs-type">int</span>[] cntS = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>    <span class="hljs-type">int</span>[] cntT = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>    <span class="hljs-type">char</span>[] ch = s.toCharArray();<br>    <span class="hljs-type">char</span>[] chT = t.toCharArray();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : ch) &#123;<br>        cntS[c - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : chT) &#123;<br>        cntT[c - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">26</span>; i++) &#123;<br>        <span class="hljs-keyword">if</span> (cntS[i] != cntT[i]) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-19-19Q205-同构字符串"><a href="#1-19-19Q205-同构字符串" class="headerlink" title="1.19 19	Q205.同构字符串"></a>1.19 19	Q205.同构字符串</h3><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，判断它们是否是同构的。</p>
+<p>如果 <code>s</code> 中的字符可以按某种映射关系替换得到 <code>t</code> ，那么这两个字符串是同构的。</p>
+<p>每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isIsomorphic</span><span class="hljs-params">(String s, String t)</span> &#123;<br>    <span class="hljs-comment">// 维护两个集合，一个是s映射到t，一个是t映射到s</span><br>    Map&lt;Character, Character&gt; s2t = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    Map&lt;Character, Character&gt; t2s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        <span class="hljs-type">char</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> s.charAt(i), y = t.charAt(i);<br>        <span class="hljs-keyword">if</span> ((s2t.containsKey(x) &amp;&amp; s2t.get(x) != y) || t2s.containsKey(y) &amp;&amp; t2s.get(y) != x) &#123;<br>            <span class="hljs-comment">// s的字符在集合中但对应的不是t中的字符，返回false（相反也是一样的）</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        s2t.put(x, y);<br>        t2s.put(y, x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-20-20Q442-数组中重复的数据"><a href="#1-20-20Q442-数组中重复的数据" class="headerlink" title="1.20 20	Q442.数组中重复的数据"></a>1.20 20	Q442.数组中重复的数据</h3><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，其中 <code>nums</code> 的所有整数都在范围 <code>[1, n]</code> 内，且每个整数出现 <strong>一次</strong> 或 <strong>两次</strong> 。请你找出所有出现 <strong>两次</strong> 的整数，并以数组形式返回。</p>
+<p>你必须设计并实现一个时间复杂度为 <code>O(n)</code> 且仅使用常量额外空间的算法解决此问题。</p>
+<blockquote>
+<p>显然这里使用一个集合是很容易解决的，但是题目要求仅使用常量额外空间。注意到其中 <code>nums</code> 的所有整数都在范围 <code>[1, n]</code> 内，且每个整数出现 <strong>一次</strong> 或 <strong>两次</strong>，那么可以尝试将数组中的数i放到数组下标i-1的位置。</p>
+<ul>
+<li>如果 i 恰好出现了一次，那么将 i 放在数组中下标为 i−1 的位置即可；</li>
+<li>如果 i 出现了两次，那么我们希望其中的一个 i 放在数组下标中为 i−1 的位置，另一个 i 放置在任意「不冲突」的位置 j。也就是说，数 j+1 没有在数组中出现过。</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title function_">findDuplicates</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">while</span> (nums[i] != nums[nums[i] - <span class="hljs-number">1</span>]) &#123;<br>            swap(nums, i, nums[i] - <span class="hljs-number">1</span>);<span class="hljs-comment">// 不在对应位置则交换</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (nums[i] - <span class="hljs-number">1</span> != i) &#123;<br>            list.add(nums[i]);<span class="hljs-comment">// 此时不在对应位置则说明是重复的数字</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> nums[i];<br>    nums[i] = nums[j];<br>    nums[j] = temp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-21-21剑指-Offer-61-扑克牌中的顺子"><a href="#1-21-21剑指-Offer-61-扑克牌中的顺子" class="headerlink" title="1.21 21	剑指 Offer 61.扑克牌中的顺子"></a>1.21 21	剑指 Offer 61.扑克牌中的顺子</h3><p>从<strong>若干副扑克牌</strong>中随机抽 <code>5</code> 张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。</p>
+<blockquote>
+<p>最大牌 - 最小牌 &lt; 5 则可构成顺子</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isStraight</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> <span class="hljs-number">14</span>, max = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (Integer num : nums) &#123;<br>        <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        max = Math.max(num, max);<br>        min = Math.min(num, min);<br>        <span class="hljs-keyword">if</span> (set.contains(num)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<span class="hljs-comment">// 若有重复，提前返回 false</span><br>        &#125;<br>        set.add(num);<br>    &#125;<br>    <span class="hljs-keyword">return</span> max - min &lt; <span class="hljs-number">5</span>;<span class="hljs-comment">// 最大牌 - 最小牌 &lt; 5 则可构成顺子</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-22-22Q268-丢失的数字"><a href="#1-22-22Q268-丢失的数字" class="headerlink" title="1.22 22	Q268.丢失的数字"></a>1.22 22	Q268.丢失的数字</h3><p>给定一个包含 <code>[0, n]</code> 中 <code>n</code> 个数的数组 <code>nums</code> ，找出 <code>[0, n]</code> 这个范围内没有出现在数组中的那个数。</p>
+<p><strong>此题有许多方法</strong></p>
+<p>[题解点这里](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/missing-number/solutions/1085105/diu-shi-de-shu-zi-by-leetcode-solution-naow/">268. 丢失的数字 - 力扣（LeetCode）</a>)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">missingNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    Arrays.sort(nums);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (i != nums[i]) &#123;<br>            <span class="hljs-comment">// 不在对应位置上</span><br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums.length;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-23-23剑指-Offer-03-数组中重复的数字"><a href="#1-23-23剑指-Offer-03-数组中重复的数字" class="headerlink" title="1.23 23	剑指 Offer 03. 数组中重复的数字"></a>1.23 23	剑指 Offer 03. 数组中重复的数字</h3><p>找出数组中重复的数字。<br>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">findRepeatNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (Integer num : nums) &#123;<br>        <span class="hljs-keyword">if</span> (!set.add(num)) &#123;<br>            <span class="hljs-keyword">return</span> num;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-24-24Q451-根据字符出现频率排序"><a href="#1-24-24Q451-根据字符出现频率排序" class="headerlink" title="1.24 24	Q451.根据字符出现频率排序"></a>1.24 24	Q451.根据字符出现频率排序</h3><p>给定一个字符串 <code>s</code> ，根据字符出现的 <strong>频率</strong> 对其进行 <strong>降序排序</strong> 。一个字符出现的 <strong>频率</strong> 是它出现在字符串中的次数。</p>
+<p>返回 <em>已排序的字符串</em> 。如果有多个答案，返回其中任何一个。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">frequencySort</span><span class="hljs-params">(String s)</span> &#123;<br>    Map&lt;Character, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> s.length();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>        <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> s.charAt(i);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> map.getOrDefault(c, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;<br>        map.put(c, cnt);<span class="hljs-comment">// 更新频次</span><br>    &#125;<br>    List&lt;Character&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Character&gt;(map.keySet());<br>    Collections.sort(list, (a, b) -&gt; map.get(b) - map.get(a));<span class="hljs-comment">// 根据字符频次排序</span><br>    <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>    <span class="hljs-keyword">for</span> (Character c : list) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> map.get(c);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; cnt; i++) &#123;<br>            sb.append(c);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>重要</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Character&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Character&gt;(map.keySet()); <br>Collections.sort(list, (a, b) -&gt; map.get(b) - map.get(a));<span class="hljs-comment">// 根据字符频次排序</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-25-Q387-字符串中的第一个唯一字符"><a href="#1-25-Q387-字符串中的第一个唯一字符" class="headerlink" title="1.25 Q387.字符串中的第一个唯一字符"></a>1.25 Q387.字符串中的第一个唯一字符</h3><p>给定一个字符串 <code>s</code> ，找到 <em>它的第一个不重复的字符，并返回它的索引</em> 。如果不存在，则返回 <code>-1</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">firstUniqChar</span><span class="hljs-params">(String s)</span> &#123;<br>    Map&lt;Character, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        <span class="hljs-type">char</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> s.charAt(i);<br>        map.put(ch, map.getOrDefault(ch, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<span class="hljs-comment">// map记录次数</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        <span class="hljs-keyword">if</span> (map.get(s.charAt(i)) == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-comment">//----------------------------------------------上面用hash表慢</span><br><span class="hljs-comment">//这里使用数组记录快很多</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">firstUniqChar</span><span class="hljs-params">(String s)</span> &#123;<br>    <span class="hljs-type">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        arr[s.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>        <span class="hljs-keyword">if</span> (arr[s.charAt(i)-<span class="hljs-string">&#x27;a&#x27;</span>] == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-26-Q49-字母异位词分组"><a href="#1-26-Q49-字母异位词分组" class="headerlink" title="1.26 Q49.字母异位词分组"></a>1.26 Q49.字母异位词分组</h3><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。</p>
+<p><strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
+<blockquote>
+<p>输入: strs &#x3D; [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>输出: [[“bat”],[“nat”,”tan”],[“ate”,”eat”,”tea”]]</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;List&lt;String&gt;&gt; <span class="hljs-title function_">groupAnagrams</span><span class="hljs-params">(String[] strs)</span> &#123;<br>    <span class="hljs-comment">// 使用哈希表存储，key=字符从小到大排序之后的串，value=字母异位词</span><br>    Map&lt;String, List&lt;String&gt;&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (String str : strs) &#123;<br>        <span class="hljs-type">char</span>[] arr = str.toCharArray();<br>        Arrays.sort(arr);<span class="hljs-comment">// 排序之和看是否是字母异位词</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(arr);<br>        List&lt;String&gt; list = map.getOrDefault(key, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());<span class="hljs-comment">// 能找到则返回key对应的value，否则返回空</span><br>        list.add(str);<span class="hljs-comment">// 将字符串本身加入list</span><br>        map.put(key, list);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;List&lt;String&gt;&gt;(map.values());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-27-27Q599-两个列表的最小索引总和"><a href="#1-27-27Q599-两个列表的最小索引总和" class="headerlink" title="1.27 27	Q599.两个列表的最小索引总和"></a>1.27 27	Q599.两个列表的最小索引总和</h3><p>假设 Andy 和 Doris 想在晚餐时选择一家餐厅，并且他们都有一个表示最喜爱餐厅的列表，每个餐厅的名字用字符串表示。</p>
+<p>你需要帮助他们用<strong>最少的索引和</strong>找出他们<strong>共同喜爱的餐厅</strong>。 如果答案不止一个，则输出所有答案并且不考虑顺序。 你可以假设答案总是存在。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String[] findRestaurant(String[] list1, String[] list2) &#123;<br>    Map&lt;String, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; list1.length; i++) &#123;<br>        map.put(list1[i], i);<span class="hljs-comment">// 记录下餐厅对应索引</span><br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">indexSum</span> <span class="hljs-operator">=</span> Integer.MAX_VALUE;<br>    List&lt;String&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; list2.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (i &gt; indexSum) &#123;<br>            <span class="hljs-keyword">break</span>;<span class="hljs-comment">// 当前索引已经大于最小索引，可以直接跳出循环</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (map.containsKey(list2[i])) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> map.get(list2[i]);<br>            <span class="hljs-keyword">if</span> (i + j &lt; indexSum) &#123;<br>                <span class="hljs-comment">// 当前小索引和小于最小索引和时</span><br>                ans.clear();<br>                ans.add(list2[i]);<br>                indexSum = i + j;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i + j == indexSum) &#123;<br>                <span class="hljs-comment">// 当前小索引和等于最小索引和时</span><br>                ans.add(list2[i]);<br>            &#125;<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> ans.toArray(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[ans.size()]);<span class="hljs-comment">// 需要返回整个list</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-28-28Q447-回旋镖的数量"><a href="#1-28-28Q447-回旋镖的数量" class="headerlink" title="1.28 28	Q447.回旋镖的数量"></a>1.28 28	Q447.回旋镖的数量</h3><p>给定平面上 <code>n</code> 对 <strong>互不相同</strong> 的点 <code>points</code> ，其中 <code>points[i] = [xi, yi]</code> 。<strong>回旋镖</strong> 是由点 <code>(i, j, k)</code> 表示的元组 ，其中 <code>i</code> 和 <code>j</code> 之间的距离和 <code>i</code> 和 <code>k</code> 之间的欧式距离相等（<strong>需要考虑元组的顺序</strong>）。</p>
+<p>返回平面上所有回旋镖的数量。</p>
+<blockquote>
+<p>输入：points &#x3D; [[0,0],[1,0],[2,0]]<br>输出：2<br>解释：两个回旋镖为 [[1,0],[0,0],[2,0]] 和 [[1,0],[2,0],[0,0]]</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">numberOfBoomerangs</span><span class="hljs-params">(<span class="hljs-type">int</span>[][] points)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; points.length; i++) &#123;<br>        Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<span class="hljs-comment">// key=距离，value=数量</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; points.length; j++) &#123;<br>            <span class="hljs-keyword">if</span> (i == j) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-comment">// 计算每个点与其他点之间的距离</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> points[i][<span class="hljs-number">0</span>] - points[j][<span class="hljs-number">0</span>], y = points[i][<span class="hljs-number">1</span>] - points[j][<span class="hljs-number">1</span>];<br>            <span class="hljs-type">int</span> <span class="hljs-variable">dis</span> <span class="hljs-operator">=</span> x * x + y * y;<br>            <span class="hljs-comment">// map分别存放第i个点与其他点距离相等的数量</span><br>            map.put(dis, map.getOrDefault(dis, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-comment">// 计算完之后统计距离相同的元组数量</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> dist : map.keySet()) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> map.get(dist);<br>            ans += cnt * (cnt - <span class="hljs-number">1</span>);<span class="hljs-comment">// 因为需要考虑到顺序不同也是一个元组的问题</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+        <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="print-no-link">#哈希表</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>哈希表</div>
+      <div>http://example.com/2025/07/30/哈希表/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Solar</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 30, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/30/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="二叉树">
+                        <span class="hidden-mobile">二叉树</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
